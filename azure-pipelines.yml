@@ -16,3 +16,6 @@ steps:
 - script: |
     echo Hello test suite team
   displayName: 'Run a multi-line script'
+- task: UiPathInstallPlatform@4
+  inputs:
+    cliVersion: 'WIN_23.10.8894.39673'
