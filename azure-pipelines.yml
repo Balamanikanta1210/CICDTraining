@@ -19,14 +19,8 @@ steps:
 - task: UiPathInstallPlatform@4
   inputs:
     cliVersion: 'WIN_23.10.8894.39673'
-- task: UiPathPack@4
+- task: UiPathRunJob@4
   inputs:
-    versionType: 'AutoVersion'
-    projectJsonPath: '$(Build.SourcesDirectory)'
     orchestratorConnection: 'UiPath Orch Conn'
-    outputPath: '$(Build.ArtifactStagingDirectory)\Output'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\Output'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    processName: 'Training_Project_Main.xaml'
+    folderName: 'Test'
