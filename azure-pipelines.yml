@@ -19,8 +19,9 @@ steps:
 - task: UiPathInstallPlatform@4
   inputs:
     cliVersion: 'WIN_23.10.8894.39673'
-- task: UiPathRunJob@4
+- task: UiPathTest@4
   inputs:
+    testTarget: 'TestSet'
     orchestratorConnection: 'UiPath Orch Conn'
-    processName: 'Training_Project_Main.xaml'
+    testSet: 'Arg_TestExcel'
     folderName: 'Test'
