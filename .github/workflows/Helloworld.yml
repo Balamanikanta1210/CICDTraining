@@ -25,5 +25,15 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world! $GITHUB_WORKSPACE
+        run: echo Hello, world! 
+        
+
+      - name: List all files and folders in $GITHUB_WORKSPACE
+        shell: pwsh
+        run: |
+           Write-Host "Contents of GITHUB_WORKSPACE:"
+           Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | ForEach-Object {
+           Write-Host $_.FullName
+           }
+
 
