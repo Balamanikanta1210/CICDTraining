@@ -54,12 +54,13 @@ jobs:
 
           Write-Host "Project path: $projectPath"
           Write-Host "Output path: $outputPath"
-
+          $applicationId = "${{ secrets.UIPATH_APPLICATION_ID }}"
+          $applicationSecret = "${{ secrets.UIPATH_APPLICATION_SECRET }}"
           .\uipcli\tools\uipcli.exe package pack $projectPath `
             -o $outputPath `
             --libraryOrchestratorUrl "https://cloud.uipath.com/" `
             --libraryOrchestratorTenant "DefaultTenant" `
-            --libraryOrchestratorApplicationId "a713bc24-1ef3-4e10-bbdb-6a7594582fea" `
-            --libraryOrchestratorApplicationSecret "1NF!qU9N0it3uohA" `
+            --libraryOrchestratorApplicationId $applicationId `
+            --libraryOrchestratorApplicationSecret $applicationSecret `
             --libraryOrchestratorApplicationScope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users.Read" `
             --libraryOrchestratorAccountForApp "walmazwnmqbk"
