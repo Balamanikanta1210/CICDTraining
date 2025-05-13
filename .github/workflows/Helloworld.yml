@@ -33,9 +33,10 @@ jobs:
         run: |
             $projectPath = Join-Path $env:GITHUB_WORKSPACE "project.json"
             Write-Host "Project path: $projectPath"
-            Write-Host "Contents of GITHUB_WORKSPACE:"
-            Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | ForEach-Object {
-            Write-Host $_.FullName
-             }
+            
+      - name: Download UiPath CLI (specific version from Azure DevOps)
+        run: |
+          Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/23.6.8581.19168/content" -OutFile "uipcli.zip"
+          Expand-Archive -Path "uipcli.zip" -DestinationPath "uipcli"
 
 
