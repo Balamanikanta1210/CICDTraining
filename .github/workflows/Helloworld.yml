@@ -41,10 +41,10 @@ jobs:
           
       - name: Verify uipcli.exe exists
         run: |
-          if (Test-Path ".\uipcli\uipcli.exe") {
-            Write-Host "uipcli.exe found at .\uipcli\uipcli.exe"
+          if (Test-Path ".\uipcli\tools\uipcli.exe") {
+            Write-Host "uipcli.exe found at .\uipcli\tools\uipcli.exe"
           } else {
-            Write-Host "❌ uipcli.exe not found at .\uipcli\uipcli.exe"
+            Write-Host "❌ uipcli.exe not found at .\uipcli\tools\uipcli.exe"
           }
       - name: Run uipcli pack
         shell: pwsh
@@ -55,7 +55,7 @@ jobs:
           Write-Host "Project path: $projectPath"
           Write-Host "Output path: $outputPath"
 
-          .\uipcli\uipcli.exe package pack $projectPath `
+          .\uipcli\tools\uipcli.exe package pack $projectPath `
             -o $outputPath `
             --libraryOrchestratorUrl "https://cloud.uipath.com/" `
             --libraryOrchestratorTenant "DefaultTenant" `
