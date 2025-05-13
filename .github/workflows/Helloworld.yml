@@ -39,4 +39,20 @@ jobs:
           Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/23.6.8581.19168/content" -OutFile "uipcli.zip"
           Expand-Archive -Path "uipcli.zip" -DestinationPath "uipcli"
 
+      - name: Run uipcli pack
+        shell: pwsh
+        run: |
+          $projectPath = Join-Path $env:GITHUB_WORKSPACE "project.json"
+          $outputPath = Join-Path $env:GITHUB_WORKSPACE "Output"
 
+          Write-Host "Project path: $projectPath"
+          Write-Host "Output path: $outputPath"
+
+          .\uipcli\uipcli.exe package pack $projectPath `
+            -o $outputPath `
+            --libraryOrchestratorUrl "https://cloud.uipath.com/" `
+            --libraryOrchestratorTenant "DefaultTenant" `
+            --libraryOrchestratorApplicationId "a713bc24-1ef3-4e10-bbdb-6a7594582fea" `
+            --libraryOrchestratorApplicationSecret "1NF!qU9N0it3uohA" `
+            --libraryOrchestratorApplicationScope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users.Read" `
+            --libraryOrchestratorAccountForApp "walmazwnmqbk"
